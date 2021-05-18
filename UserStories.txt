@@ -1,0 +1,21 @@
+﻿Functional Requirements
+-Logging
+-70% Minimum Test Coverage
+-Spring
+-React
+-Third-Party API - tmDB(The Movie Database API (themoviedb.org))
+
+
+
+
+Movie review system
+-A user can login
+-A user can sign up to the website
+-A user can log out
+-A user can edit profile
+-A user can see a home screen, that shows most rated, trending(API) and reviewed movies
+-A user can search for a movie and get basic info about said movie
+-A user can view reviews and ratings for a movie
+-A user can create a list of movies they seen, and add to that list
+-A user can view the contents of their list
+-A user can create, edit, or delete a review for movies on their list
