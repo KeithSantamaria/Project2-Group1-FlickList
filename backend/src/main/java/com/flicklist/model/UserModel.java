@@ -8,6 +8,7 @@ public class UserModel {
 	private String id;
 	private String username;
 	private String password;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
+	private String email;
 }
