@@ -2,6 +2,7 @@ package com.flicklist.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+
 @Data
 public class UserModel {
 	@Id
@@ -11,4 +12,5 @@ public class UserModel {
 	private String firstName;
 	private String lastName;
 	private String email;
+
 }

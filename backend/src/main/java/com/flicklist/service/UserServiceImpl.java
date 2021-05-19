@@ -3,6 +3,10 @@ package com.flicklist.service;
 import com.flicklist.model.UserModel;
 import com.flicklist.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +16,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
 	private final UserRepository userRepository;
+
+	@Override
+	public UserModel findOneByUsernameAndPassword(String username, String password) {
+		return userRepository.findByUsernameAndPassword(username, password);
+	}
 
 	@Override
 	public UserModel save(UserModel userModel) {

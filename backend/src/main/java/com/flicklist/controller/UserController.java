@@ -13,6 +13,11 @@ import java.util.List;
 public class UserController {
 	private final UserService userService;
 
+	@GetMapping("/login")
+	public ResponseEntity<UserModel> login(@RequestBody UserModel request){
+		return ResponseEntity.ok( userService.findOneByUsernameAndPassword(request.getUsername(), request.getPassword()));
+	}
+
 	@GetMapping("/findall")
 	public ResponseEntity<List<UserModel>> findAll() {
 		return ResponseEntity.ok(userService.findAll());

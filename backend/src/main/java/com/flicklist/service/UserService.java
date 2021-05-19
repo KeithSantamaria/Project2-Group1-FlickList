@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UserService {
 
+	UserModel findOneByUsernameAndPassword(String username, String password);
+
 	UserModel save(UserModel userModel);
 
 	List<UserModel> findAll();
