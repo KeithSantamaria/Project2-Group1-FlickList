@@ -1,2 +1,5 @@
 branchName: short
 autoCloseIssue: true
+branches:
+    name: development
+
