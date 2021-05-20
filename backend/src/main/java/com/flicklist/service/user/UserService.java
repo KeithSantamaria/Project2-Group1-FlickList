@@ -2,16 +2,19 @@ package com.flicklist.service.user;
 
 import com.flicklist.model.User;
 import com.flicklist.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserService implements IUserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
 
 	@Override
 	public User findByUsernameAndPassword(String username, String password) {
