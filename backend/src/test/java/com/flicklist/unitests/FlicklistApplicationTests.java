@@ -1,4 +1,4 @@
-package com.flicklist;
+package com.flicklist.unitests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
