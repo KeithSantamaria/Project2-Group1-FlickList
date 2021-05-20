@@ -8,7 +8,6 @@ public class FlicklistApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FlicklistApplication.class, args);
-
 	}
 
 }
