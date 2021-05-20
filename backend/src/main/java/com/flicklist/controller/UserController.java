@@ -61,8 +61,6 @@ public class UserController {
 				: ResponseEntity.ok("\"deletedCount\":\"" + deleteCount + "\"");
 	}
 
-
-
 }
 
 //@RequestParam does it like this http://localhost:8080/delete?id=60a46bd2bad8d9537d0367b7
