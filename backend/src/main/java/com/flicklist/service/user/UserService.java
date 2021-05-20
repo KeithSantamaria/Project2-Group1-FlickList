@@ -16,12 +16,8 @@ public class UserService implements IUserService {
 	@Override
 	public User findByUsernameAndPassword(String username, String password) {
 		//TODO make sure username is unique
-		List<User> usersFound = userRepository.findByUsernameAndPassword(username,password);
-		if(usersFound.isEmpty()){
-			return null;
-		}else{
-			return usersFound.get(0);
-		}
+		return userRepository.findByUsernameAndPassword(username,password);
+
 	}
 
 	@Override
