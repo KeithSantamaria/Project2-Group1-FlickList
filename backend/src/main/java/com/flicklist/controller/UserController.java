@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,12 @@ public class UserController {
 
 	@GetMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User request){
-		return ResponseEntity.ok( userService.findOneByUsernameAndPassword(request.getUsername(), request.getPassword()));
+		return ResponseEntity.ok(userService.findByUsernameAndPassword(request.getUsername(), request.getPassword()));
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<User> findByUserId(@PathVariable String id){
+		return ResponseEntity.ok(userService.findById(id));
 	}
 
 	@GetMapping()
@@ -25,12 +31,12 @@ public class UserController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<User> create(@RequestBody User request){
+	public ResponseEntity<User> create(@Valid @RequestBody User request){
 		return ResponseEntity.ok(userService.create(request));
 	}
 
 	@PutMapping()
-	public ResponseEntity<User> update(@RequestBody User request){
+	public ResponseEntity<User> update(@Valid @RequestBody User request){
 		return ResponseEntity.ok(userService.update(request));
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 
 @Data
 @Document(collection = "reviews")
@@ -18,10 +19,11 @@ public class Review {
 	@NotEmpty
 	private String movieId;
 	private String date;
-	@NotEmpty
+	@Positive
 	@Min(value = 1, message = "Rating must be greater than 0")
 	@Max(value = 5, message = "Rating must be less or equal to than 5")
 	private int rating;
+
 	private String title;
 	private String textBody;
 
