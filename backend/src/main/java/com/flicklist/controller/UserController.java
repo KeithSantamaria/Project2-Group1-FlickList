@@ -1,42 +1,43 @@
 package com.flicklist.controller;
 
-import com.flicklist.model.UserModel;
-import com.flicklist.service.UserService;
-import lombok.AllArgsConstructor;
+import com.flicklist.model.User;
+import com.flicklist.service.user.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequestMapping ("/users")
 public class UserController {
-	private final UserService userService;
+	@Autowired
+	private IUserService userService;
 
 	@GetMapping("/login")
-	public ResponseEntity<UserModel> login(@RequestBody UserModel request){
+	public ResponseEntity<User> login(@RequestBody User request){
 		return ResponseEntity.ok( userService.findOneByUsernameAndPassword(request.getUsername(), request.getPassword()));
 	}
 
-	@GetMapping("/findall")
-	public ResponseEntity<List<UserModel>> findAll() {
+	@GetMapping()
+	public ResponseEntity<List<User>> findAll() {
 		return ResponseEntity.ok(userService.findAll());
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<UserModel> save(@RequestBody UserModel request){
-		return ResponseEntity.ok(userService.save(request));
+	@PostMapping()
+	public ResponseEntity<User> create(@RequestBody User request){
+		return ResponseEntity.ok(userService.create(request));
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<UserModel> update(@RequestBody UserModel request){
+	@PutMapping()
+	public ResponseEntity<User> update(@RequestBody User request){
 		return ResponseEntity.ok(userService.update(request));
 	}
 
-	@DeleteMapping("/delete")
-	public ResponseEntity<UserModel> delete(@RequestBody UserModel request){
+	@DeleteMapping()
+	public void delete(@RequestBody User request){
+		//TODO do something to confirm delete
 		userService.delete(request.getId());
-		return ResponseEntity.ok().build();
 	}
 }
 
