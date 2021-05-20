@@ -12,4 +12,5 @@ import java.util.List;
 public interface ReviewRepository extends MongoRepository<Review,String>{
 	List<Review> findByUserId(String id);
 	List<Review> findByMovieId(String id);
+	long removeById(String id);
 }

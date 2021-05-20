@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping ("/users")
@@ -15,14 +16,20 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User request){
-		return ResponseEntity.ok(userService.findByUsernameAndPassword(request.getUsername(), request.getPassword()));
+		User userFound = userService.findByUsernameAndPassword(request.getUsername(),request.getPassword());
+		return userFound == null
+				? ResponseEntity.notFound().build()
+				: ResponseEntity.ok(userFound);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findByUserId(@PathVariable String id){
-		return ResponseEntity.ok(userService.findById(id));
+		User userFound = userService.findById(id);
+		return userFound == null
+				? ResponseEntity.notFound().build()
+				: ResponseEntity.ok(userFound);
 	}
 
 	@GetMapping()
@@ -32,19 +39,30 @@ public class UserController {
 
 	@PostMapping()
 	public ResponseEntity<User> create(@Valid @RequestBody User request){
-		return ResponseEntity.ok(userService.create(request));
+		User userCreated = userService.create(request);
+		return userCreated == null
+				? ResponseEntity.badRequest().build()
+				: ResponseEntity.ok(userCreated);
 	}
 
 	@PutMapping()
 	public ResponseEntity<User> update(@Valid @RequestBody User request){
-		return ResponseEntity.ok(userService.update(request));
+		User userUpdated = userService.update(request);
+		return userUpdated == null
+				? ResponseEntity.badRequest().build()
+				: ResponseEntity.ok(userUpdated);
 	}
 
 	@DeleteMapping()
-	public void delete(@RequestBody User request){
-		//TODO do something to confirm delete
-		userService.delete(request.getId());
+	public ResponseEntity<String> delete(@RequestBody User request){
+		long deleteCount = userService.delete(request);
+		return deleteCount == 0
+				? ResponseEntity.notFound().build()
+				: ResponseEntity.ok("\"deletedCount\":\"" + deleteCount + "\"");
 	}
+
+
+
 }
 
 //@RequestParam does it like this http://localhost:8080/delete?id=60a46bd2bad8d9537d0367b7

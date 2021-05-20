@@ -3,6 +3,7 @@ package com.flicklist.service.user;
 import com.flicklist.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserService {
 
@@ -12,5 +13,5 @@ public interface IUserService {
 	User findByUsernameAndPassword(String username, String password);
 	User create(User user);
 	User update(User user);
-	void delete(String id);
+	long delete(User user);
 }

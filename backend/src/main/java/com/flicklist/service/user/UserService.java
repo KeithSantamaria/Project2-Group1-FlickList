@@ -36,16 +36,24 @@ public class UserService implements IUserService {
 
 	@Override
 	public User create(User user) {
-		return userRepository.save(user);
+		if (user.getId() == null) {
+			return userRepository.save(user);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public User update(User user){
-		return userRepository.save(user);
+		if(user.getId() == null){
+			return null;
+		}else{
+			return userRepository.save(user);
+		}
 	}
 
 	@Override
-	public void delete(String id) {
-		userRepository.deleteById(id);
+	public long delete(User user) {
+		return userRepository.removeById(user.getId());
 	}
 }

@@ -37,19 +37,26 @@ public class ReviewService implements IReviewService{
 
 	@Override
 	public Review create(Review review) {
-		review.setDate(createDate());
-		return reviewRepository.save(review);
+		if (review.getId() == null) {
+			review.setDate(createDate());
+			return reviewRepository.save(review);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public Review update(Review review) {
-		reviewRepository.findById(review.getId()).orElse(null);
-		return reviewRepository.save(review);
+		if (review.getId() == null) {
+			return null;
+		} else {
+			return reviewRepository.save(review);
+		}
 	}
 
 	@Override
-	public void delete(String id) {
-		reviewRepository.deleteById(id);
+	public long delete(Review review) {
+		return reviewRepository.removeById(review.getId());
 	}
 
 

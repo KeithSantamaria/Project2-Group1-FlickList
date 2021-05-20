@@ -12,5 +12,5 @@ public interface IReviewService {
 	Review findById(String id);
 	Review create(Review review);
 	Review update (Review review);
-	void delete(String id);
+	long delete(Review review);
 }
