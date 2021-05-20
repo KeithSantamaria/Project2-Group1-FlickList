@@ -1,0 +1,17 @@
+User
+	username
+	password
+	firstName
+	lastName
+	email
+
+Review
+	userId
+	movieId
+	date
+	rating (int)
+	title
+	textbody
+	likes (int)
+	dislikes (int)
+
