@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface IReviewService {
 
-	List<Review> getAll();
-	List<Review> getAllByUserId(String id);
-	List<Review> getAllByMovieId(String id);
+	List<Review> findAll();
+	List<Review> findAllByUserId(String id);
+	List<Review> findAllByMovieId(String id);
+	Review findById(String id);
 	Review create(Review review);
 	Review update (Review review);
 	void delete(String id);

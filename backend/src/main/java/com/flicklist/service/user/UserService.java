@@ -14,14 +14,14 @@ public class UserService implements IUserService {
 	private UserRepository userRepository;
 
 	@Override
-	public User findOneByUsernameAndPassword(String username, String password) {
+	public User findByUsernameAndPassword(String username, String password) {
 		//TODO make sure username is unique
-		return userRepository.findByUsernameAndPassword(username, password);
-	}
-
-	@Override
-	public User create(User user) {
-		return userRepository.save(user);
+		List<User> usersFound = userRepository.findByUsernameAndPassword(username,password);
+		if(usersFound.isEmpty()){
+			return null;
+		}else{
+			return usersFound.get(0);
+		}
 	}
 
 	@Override
@@ -30,9 +30,17 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User update(User user) {
-		//checking if exists
-		userRepository.findById(user.getId()).orElse(null);
+	public User findById(String id) {
+		return userRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public User create(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User update(User user){
 		return userRepository.save(user);
 	}
 
