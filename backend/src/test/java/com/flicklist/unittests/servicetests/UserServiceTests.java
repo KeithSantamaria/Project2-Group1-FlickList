@@ -80,19 +80,37 @@ public class UserServiceTests {
 	public void shouldUpdateUser(){
 		testUser = new User();
 		testUser.setId("testId");
+		testUser.setUsername("Keith");
 		testUser.setPassword("123123");
-		User changedUser = new User();
-		changedUser.setId("testId");
+		testUser.setFirstName("Keith");
+		testUser.setLastName("Santamaria");
+		testUser.setEmail("keith.santamaria@revature.net");
+
+		User changedUser = testUser;
 		changedUser.setPassword("123456");
 		Mockito.when(userRepository.save(testUser)).thenReturn(changedUser);
 		User createdUser = userService.update(testUser);
 		boolean isCorrectParams = true;
+		//we are doing to following solely get
 		if ( !createdUser.getId().equals(testUser.getId()) ){
+			isCorrectParams = false;
+		}
+		if( !changedUser.getUsername().equals("Keith")){
 			isCorrectParams = false;
 		}
 		if( !changedUser.getPassword().equals("123456")){
 			isCorrectParams = false;
 		}
+		if( !changedUser.getFirstName().equals("Keith")){
+			isCorrectParams = false;
+		}
+		if( !changedUser.getLastName().equals("Santamaria")){
+			isCorrectParams = false;
+		}
+		if ( !changedUser.getEmail().equals("keith.santamaria@revature.net")){
+			isCorrectParams = false;
+		}
+
 		Assert.assertEquals("Should have update", true, isCorrectParams);
 	}
 
