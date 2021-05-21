@@ -2,10 +2,17 @@ package com.flicklist.unittests.servicetests;
 
 import com.flicklist.model.Review;
 import com.flicklist.repository.ReviewRepository;
+import com.flicklist.repository.UserRepository;
 import com.flicklist.service.review.ReviewService;
+import com.flicklist.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +20,18 @@ import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ReviewServiceTests {
-	Review testReview;
-	List<Review> reviews;
 
-	private final ReviewRepository reviewRepository = Mockito.mock(ReviewRepository.class);
-	private final ReviewService reviewService = new ReviewService(reviewRepository);
+	@Mock
+	private ReviewRepository reviewRepository;
+
+	@Autowired
+	@InjectMocks
+	private ReviewService reviewService;
+
+	private Review testReview;
+	private List<Review> reviews;
 
 	@BeforeEach
 	public void shouldRunBeforeEach(){
@@ -57,14 +70,12 @@ public class ReviewServiceTests {
 	public void shouldFailToCreateAReview(){
 		testReview.setId("testId");
 		testReview.setDate("2021-04-12");
-		Mockito.when(reviewRepository.save(testReview)).thenReturn(testReview);
 		Review createdReview = reviewService.create(testReview);
 		assertNotEquals("Should fail to create", testReview, createdReview);
 	}
 
 	@Test
 	public void shouldFailToUpdateReview(){
-		Mockito.when(reviewRepository.save(testReview)).thenReturn(null);
 		Review createdUser = reviewService.update(testReview);
 		assertNull("Should be null", createdUser);
 	}
