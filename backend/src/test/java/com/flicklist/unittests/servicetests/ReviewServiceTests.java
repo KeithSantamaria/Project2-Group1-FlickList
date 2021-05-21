@@ -54,9 +54,10 @@ public class ReviewServiceTests {
 	@Test
 	public void shouldFailToCreateAReview(){
 		testReview.setId("testId");
-		Mockito.when(reviewRepository.save(testReview)).thenReturn(null);
-		Review createdReview = reviewService.update(testReview);
-		Assert.assertNull("Should be null", createdReview);
+		testReview.setDate("2021-04-12");
+		Mockito.when(reviewRepository.save(testReview)).thenReturn(testReview);
+		Review createdReview = reviewService.create(testReview);
+		Assert.assertNotEquals("Should fail to create", testReview, createdReview);
 	}
 
 	@Test
@@ -142,4 +143,5 @@ public class ReviewServiceTests {
 		List<Review> createdReview = reviewService.findAllByUserId("userId");
 		Assert.assertEquals("Should fetch 3 reviews", 3, createdReview.size());
 	}
+
 }
