@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static org.junit.Assert.*;
-
+import static org.springframework.test.util.AssertionErrors.*;
 public class UserServiceTests {
 	User testUser;
 	List<User> users;
@@ -33,7 +32,7 @@ public class UserServiceTests {
 		testUser.setPassword(password);
 		List<User> users = new ArrayList<>();
 		users.add(testUser);
-		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(users);
+		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(testUser);
 		User createdUser =  userService.findByUsernameAndPassword(username,password);
 		assertEquals("User did not match.",createdUser , testUser);
 	}
@@ -42,7 +41,7 @@ public class UserServiceTests {
 	public void shouldNotFindByUserNameAndPassword(){
 		String username = "wrongUser";
 		String password ="123";
-		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(users);
+		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(null);
 		User createdUser =  userService.findByUsernameAndPassword(username,password);
 		assertNull("Log in should have failed.", createdUser);
 	}
@@ -122,7 +121,7 @@ public class UserServiceTests {
 		testUser.setId(id);
 		Mockito.when(userRepository.removeById(id)).thenReturn(testSize -1);
 		long newSizeAfterDelete = userService.delete(testUser);
-		assertEquals("Should have been one less document", 2, newSizeAfterDelete);
+		assertEquals("Should have been one less document", (long)2, newSizeAfterDelete);
 	}
 
 	@Test

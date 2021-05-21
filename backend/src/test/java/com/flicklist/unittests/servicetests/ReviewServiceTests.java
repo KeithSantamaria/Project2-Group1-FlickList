@@ -3,13 +3,15 @@ package com.flicklist.unittests.servicetests;
 import com.flicklist.model.Review;
 import com.flicklist.repository.ReviewRepository;
 import com.flicklist.service.review.ReviewService;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+import static org.springframework.test.util.AssertionErrors.*;
 
 public class ReviewServiceTests {
 	Review testReview;
@@ -33,7 +35,7 @@ public class ReviewServiceTests {
 		Mockito.when(reviewRepository.findAll()).thenReturn(reviews);
 		List<Review> fetchedReviews = reviewService.findAll();
 		int expectedCount = 3;
-		Assert.assertEquals("Expected to fetch 3 reviews ",expectedCount,fetchedReviews.size());
+		assertEquals("Expected to fetch 3 reviews ",expectedCount,fetchedReviews.size());
 	}
 
 	@Test
@@ -41,14 +43,14 @@ public class ReviewServiceTests {
 		testReview.setId("60a6c78bc1b41e59f7bd5d37");
 		Mockito.when(reviewRepository.findById(testReview.getId())).thenReturn(java.util.Optional.of(testReview));
 		Review createdReview = reviewService.findById(testReview.getId());
-		Assert.assertEquals("Should be the same review", testReview, createdReview);
+		assertEquals("Should be the same review", testReview, createdReview);
 	}
 
 	@Test
 	public void shouldCreateAReview(){
 		Mockito.when(reviewRepository.save(testReview)).thenReturn(testReview);
 		Review createdReview = reviewService.create(testReview);
-		Assert.assertEquals("Expected equal Reviews", testReview, createdReview);
+		assertEquals("Expected equal Reviews", testReview, createdReview);
 	}
 
 	@Test
@@ -57,14 +59,14 @@ public class ReviewServiceTests {
 		testReview.setDate("2021-04-12");
 		Mockito.when(reviewRepository.save(testReview)).thenReturn(testReview);
 		Review createdReview = reviewService.create(testReview);
-		Assert.assertNotEquals("Should fail to create", testReview, createdReview);
+		assertNotEquals("Should fail to create", testReview, createdReview);
 	}
 
 	@Test
 	public void shouldFailToUpdateReview(){
 		Mockito.when(reviewRepository.save(testReview)).thenReturn(null);
 		Review createdUser = reviewService.update(testReview);
-		Assert.assertNull("Should be null", createdUser);
+		assertNull("Should be null", createdUser);
 	}
 
 	@Test
@@ -109,7 +111,7 @@ public class ReviewServiceTests {
 			isCorrectParams = false;
 		}
 
-		Assert.assertTrue("Should have update", isCorrectParams);
+		assertTrue("Should have update", isCorrectParams);
 	}
 
 	@Test
@@ -119,7 +121,7 @@ public class ReviewServiceTests {
 		testReview.setId(id);
 		Mockito.when(reviewRepository.removeById(id)).thenReturn( testSize -1);
 		long newSizeAfterDelete = reviewService.delete(testReview);
-		Assert.assertEquals("Should have been one less document", 2 , newSizeAfterDelete);
+		assertEquals("Should have been one less document", (long)2 , newSizeAfterDelete);
 	}
 
 	@Test
@@ -130,7 +132,7 @@ public class ReviewServiceTests {
 
 		Mockito.when(reviewRepository.findByMovieId("movieId")).thenReturn(reviews);
 		List<Review> createdReview = reviewService.findAllByMovieId("movieId");
-		Assert.assertEquals("Should fetch 3 reviews", 3, createdReview.size());
+		assertEquals("Should fetch 3 reviews", 3, createdReview.size());
 	}
 
 	@Test
@@ -141,7 +143,7 @@ public class ReviewServiceTests {
 
 		Mockito.when(reviewRepository.findByUserId("userId")).thenReturn(reviews);
 		List<Review> createdReview = reviewService.findAllByUserId("userId");
-		Assert.assertEquals("Should fetch 3 reviews", 3, createdReview.size());
+		assertEquals("Should fetch 3 reviews", 3, createdReview.size());
 	}
 
 }
