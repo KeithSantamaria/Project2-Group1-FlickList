@@ -1,4 +1,4 @@
-branchName: short
+branchName: full
 autoCloseIssue: true
 branches:
   - label: '*'
