@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class UserService implements IUserService {
 
 	@Autowired
@@ -19,12 +18,8 @@ public class UserService implements IUserService {
 	@Override
 	public User findByUsernameAndPassword(String username, String password) {
 		//TODO make sure username is unique
-		List<User> usersFound = userRepository.findByUsernameAndPassword(username,password);
-		if(usersFound.isEmpty()){
-			return null;
-		}else{
-			return usersFound.get(0);
-		}
+		return userRepository.findByUsernameAndPassword(username,password);
+
 	}
 
 	@Override
@@ -40,7 +35,12 @@ public class UserService implements IUserService {
 	@Override
 	public User create(User user) {
 		if (user.getId() == null) {
-			return userRepository.save(user);
+			try{
+				return userRepository.save(user);
+			}catch(Exception exception){
+				//Exception when  username or email already exists
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -51,7 +51,12 @@ public class UserService implements IUserService {
 		if(user.getId() == null){
 			return null;
 		}else{
-			return userRepository.save(user);
+			try{
+				return userRepository.save(user);
+			}catch(Exception exception){
+				//Exception when  username or email already exists
+				return null;
+			}
 		}
 	}
 

@@ -5,19 +5,29 @@ import com.flicklist.repository.UserRepository;
 import com.flicklist.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
+import static org.springframework.test.util.AssertionErrors.*;
 
-
-import static org.junit.Assert.*;
-
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTests {
-	User testUser;
-	List<User> users;
-	private final UserRepository userRepository = Mockito.mock(UserRepository.class);
-	UserService userService = new UserService(userRepository);
+
+
+	@Mock
+	private UserRepository userRepository;
+
+	@Autowired
+	@InjectMocks
+	UserService userService;
+
+	private User testUser;
+	private List<User> users;
 
 	@BeforeEach
 	void  shouldRunBeforeEach(){
@@ -33,7 +43,7 @@ public class UserServiceTests {
 		testUser.setPassword(password);
 		List<User> users = new ArrayList<>();
 		users.add(testUser);
-		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(users);
+		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(testUser);
 		User createdUser =  userService.findByUsernameAndPassword(username,password);
 		assertEquals("User did not match.",createdUser , testUser);
 	}
@@ -42,7 +52,7 @@ public class UserServiceTests {
 	public void shouldNotFindByUserNameAndPassword(){
 		String username = "wrongUser";
 		String password ="123";
-		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(users);
+		Mockito.when(userRepository.findByUsernameAndPassword(username, password)).thenReturn(null);
 		User createdUser =  userService.findByUsernameAndPassword(username,password);
 		assertNull("Log in should have failed.", createdUser);
 	}
@@ -67,18 +77,35 @@ public class UserServiceTests {
 	}
 
 	@Test
+	public void shouldFailCreateAUserValidationFailed(){
+		Mockito.when(userRepository.save(testUser)).thenThrow(
+				new RuntimeException()
+		);
+		User createdUser = userService.create(testUser);
+		assertEquals("Expected equal null", null, createdUser);
+	}
+
+	@Test
 	public void shouldFailToCreateUser(){
 		testUser.setId("testId");
-		Mockito.when(userRepository.save(testUser)).thenReturn(testUser);
 		User createdUser = userService.create(testUser);
 		assertNotEquals("Should have detected that user already exists", testUser, createdUser);
 	}
 
 	@Test
 	public void shouldFailToUpdateUser(){
-		Mockito.when(userRepository.save(testUser)).thenReturn(null);
 		User createdUser = userService.update(testUser);
 		assertNull("Should be null",createdUser);
+	}
+
+	@Test
+	public void shouldFailUpdateAUserValidationFailed(){
+		testUser.setId("testId");
+		Mockito.when(userRepository.save(testUser)).thenThrow(
+				new RuntimeException()
+		);
+		User updatedUser = userService.update(testUser);
+		assertEquals("Expected equal null", null, updatedUser);
 	}
 
 	@Test
@@ -122,7 +149,7 @@ public class UserServiceTests {
 		testUser.setId(id);
 		Mockito.when(userRepository.removeById(id)).thenReturn(testSize -1);
 		long newSizeAfterDelete = userService.delete(testUser);
-		assertEquals("Should have been one less document", 2, newSizeAfterDelete);
+		assertEquals("Should have been one less document", (long)2, newSizeAfterDelete);
 	}
 
 	@Test
