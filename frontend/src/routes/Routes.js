@@ -2,21 +2,37 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
-const Routes = () => {
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Movie from "../pages/Movie";
+import Profile from '../pages/Profile';
+import Reviews from "../pages/Reviews";
 
+
+const Routes = () => {
   return(
     <Router>
       <Switch>
         <Route path = "/" exact> 
-          <p>Base Route</p>
+          <Home/>
+        </Route>
+        <Route path = "/profile/:userId">
+          <Profile/>
+        </Route>
+        <Route path = "/reviews/:userId">
+          <Reviews/>
+        </Route>
+        <Route path = "/movie/:movieId">
+          <Movie/>
         </Route>
         <Route path = "/login">
-          <p>login and signin here</p>
+          <Login/>
         </Route>
         <Route path = "*">
-          <p>Sorry page not found :(</p>
+          <Redirect to ="/login"/>
         </Route>
       </Switch>
     </Router>
