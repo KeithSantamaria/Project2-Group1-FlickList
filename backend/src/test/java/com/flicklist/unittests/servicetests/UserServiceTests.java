@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 import static org.springframework.test.util.AssertionErrors.*;
@@ -78,6 +77,15 @@ public class UserServiceTests {
 	}
 
 	@Test
+	public void shouldFailCreateAUserValidationFailed(){
+		Mockito.when(userRepository.save(testUser)).thenThrow(
+				new RuntimeException()
+		);
+		User createdUser = userService.create(testUser);
+		assertEquals("Expected equal null", null, createdUser);
+	}
+
+	@Test
 	public void shouldFailToCreateUser(){
 		testUser.setId("testId");
 		User createdUser = userService.create(testUser);
@@ -88,6 +96,16 @@ public class UserServiceTests {
 	public void shouldFailToUpdateUser(){
 		User createdUser = userService.update(testUser);
 		assertNull("Should be null",createdUser);
+	}
+
+	@Test
+	public void shouldFailUpdateAUserValidationFailed(){
+		testUser.setId("testId");
+		Mockito.when(userRepository.save(testUser)).thenThrow(
+				new RuntimeException()
+		);
+		User updatedUser = userService.update(testUser);
+		assertEquals("Expected equal null", null, updatedUser);
 	}
 
 	@Test
