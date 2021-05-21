@@ -1,7 +1,6 @@
 package com.flicklist.controller;
 
 import com.flicklist.model.Review;
-import com.flicklist.model.User;
 import com.flicklist.service.review.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

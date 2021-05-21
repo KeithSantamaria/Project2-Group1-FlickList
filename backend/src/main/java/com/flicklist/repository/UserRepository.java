@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends MongoRepository<User,String> {
 	//@Query("{'$and':[ {'username':?0}, {'password':?1} ] }")
-	List<User> findByUsernameAndPassword(String username, String password);
+	User findByUsernameAndPassword(String username, String password);
 	long removeById(String id);
 }
