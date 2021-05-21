@@ -1,0 +1,26 @@
+{
+  {
+      "username": "KeithSantamaria",
+      "password": "123123",
+      "firstName": "Keith",
+      "lastName": "Santamaria",
+      "email": "keith.santamaria@revature.net",
+      "_class": "com.flicklist.model.UserModel"
+  }
+  {
+    "username": "JuanToledo",
+    "password": "123123",
+    "firstName": "Juan",
+    "lastName": "Toledo",
+    "email": "juan.toledo@revature.net",
+    "_class": "com.flicklist.model.UserModel"
+  }
+  {
+    "username": "HunterBuxton",
+    "password": "123123",
+    "firstName": "Hunter",
+    "lastName": "Buxton",
+    "email": "hunter.buxton@revature.net",
+    "_class": "com.flicklist.model.UserModel"
+  }
+}
