@@ -5,18 +5,30 @@ import com.flicklist.repository.UserRepository;
 import com.flicklist.service.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import static org.springframework.test.util.AssertionErrors.*;
+
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTests {
-	User testUser;
-	List<User> users;
-	private final UserRepository userRepository = Mockito.mock(UserRepository.class);
-	UserService userService = new UserService(userRepository);
+
+
+	@Mock
+	private UserRepository userRepository;
+
+	@Autowired
+	@InjectMocks
+	UserService userService;
+
+	private User testUser;
+	private List<User> users;
 
 	@BeforeEach
 	void  shouldRunBeforeEach(){
@@ -68,14 +80,12 @@ public class UserServiceTests {
 	@Test
 	public void shouldFailToCreateUser(){
 		testUser.setId("testId");
-		Mockito.when(userRepository.save(testUser)).thenReturn(testUser);
 		User createdUser = userService.create(testUser);
 		assertNotEquals("Should have detected that user already exists", testUser, createdUser);
 	}
 
 	@Test
 	public void shouldFailToUpdateUser(){
-		Mockito.when(userRepository.save(testUser)).thenReturn(null);
 		User createdUser = userService.update(testUser);
 		assertNull("Should be null",createdUser);
 	}
