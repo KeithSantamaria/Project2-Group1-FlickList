@@ -16,15 +16,15 @@ public class UserController {
 	private IUserService userService;
 
 	@PostMapping("/login")
-	public ResponseEntity<User> login(@RequestBody User request){
-		User userFound = userService.findByUsernameAndPassword(request.getUsername(),request.getPassword());
+	public ResponseEntity<User> login(@RequestBody User request) {
+		User userFound = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
 		return userFound == null
 				? ResponseEntity.notFound().build()
 				: ResponseEntity.ok(userFound);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> findByUserId(@PathVariable String id){
+	public ResponseEntity<User> findByUserId(@PathVariable String id) {
 		User userFound = userService.findById(id);
 		return userFound == null
 				? ResponseEntity.notFound().build()
@@ -37,7 +37,7 @@ public class UserController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<User> create(@Valid @RequestBody User request){
+	public ResponseEntity<User> create(@Valid @RequestBody User request) {
 		User userCreated = userService.create(request);
 		return userCreated == null
 				? ResponseEntity.badRequest().build()
@@ -45,7 +45,7 @@ public class UserController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<User> update(@Valid @RequestBody User request){
+	public ResponseEntity<User> update(@Valid @RequestBody User request) {
 		User userUpdated = userService.update(request);
 		return userUpdated == null
 				? ResponseEntity.badRequest().build()
@@ -53,14 +53,12 @@ public class UserController {
 	}
 
 	@DeleteMapping()
-	public ResponseEntity<String> delete(@RequestBody User request){
+	public ResponseEntity<String> delete(@RequestBody User request) {
 		long deleteCount = userService.delete(request);
 		return deleteCount == 0
 				? ResponseEntity.notFound().build()
 				: ResponseEntity.ok("\"deletedCount\":\"" + deleteCount + "\"");
 	}
-
 }
-
 //@RequestParam does it like this http://localhost:8080/delete?id=60a46bd2bad8d9537d0367b7
 //@RequestBody does it as JSON

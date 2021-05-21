@@ -2,6 +2,7 @@ package com.flicklist.service.review;
 
 import com.flicklist.model.Review;
 import com.flicklist.repository.ReviewRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ReviewService implements IReviewService{
 
 	@Autowired

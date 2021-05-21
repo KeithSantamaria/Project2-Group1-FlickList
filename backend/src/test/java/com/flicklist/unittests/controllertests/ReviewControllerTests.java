@@ -1,4 +1,4 @@
-package com.flicklist.unitests.controllertests;
+package com.flicklist.unittests.controllertests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flicklist.controller.ReviewController;
