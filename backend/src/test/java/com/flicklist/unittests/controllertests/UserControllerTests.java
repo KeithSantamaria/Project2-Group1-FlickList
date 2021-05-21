@@ -1,4 +1,4 @@
-package com.flicklist.unitests.controllertests;
+package com.flicklist.unittests.controllertests;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
