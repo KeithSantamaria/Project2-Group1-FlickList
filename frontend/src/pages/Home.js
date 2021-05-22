@@ -4,10 +4,8 @@ import NavBar from '../components/navigation/NavBar';
 function Home() {
   return (
     <div>
-    
-      <NavBar>
-
-      </NavBar>
+      <NavBar/>
+      
     </div>
 
   )
