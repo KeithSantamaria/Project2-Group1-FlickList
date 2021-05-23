@@ -6,9 +6,7 @@ function Home() {
   return (
     <div>
       <NavBar/>
-      <div>
-        <TrendingMovies/>
-      </div>
+      <TrendingMovies/>
     </div>
 
   )
