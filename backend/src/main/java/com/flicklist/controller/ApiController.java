@@ -2,11 +2,20 @@ package com.flicklist.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+<<<<<<< HEAD
+=======
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+>>>>>>> 9d592034e3ba3550c60eb75805b3777e160c3e9c
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
+<<<<<<< HEAD
+=======
+import reactor.core.publisher.Mono;
+>>>>>>> 9d592034e3ba3550c60eb75805b3777e160c3e9c
 
 @RestController
 @RequestMapping("/tmdb")
