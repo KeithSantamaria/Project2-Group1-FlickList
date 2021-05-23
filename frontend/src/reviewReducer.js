@@ -1,7 +1,7 @@
-
+import * as actions from './actions.js';
 
 export default function reviewReducer( state = [], action) {
-    if (action.type === 'reviewAdded') {
+    if (action.type === actions.REVIEW_ADDED) {
       return [
           ...state,
           {
@@ -16,9 +16,10 @@ export default function reviewReducer( state = [], action) {
               dislikes: 0
           }
       ];
-    } else if (action.type === 'reviewRemoved') {
+    } else if (action.type === actions.REVIEW_DELETED) {
         return state.filter(review => review.id !== action.payload.id);
     } else {
         return state;
     }
   }
+
