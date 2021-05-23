@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
 @RequestMapping ("/reviews")
+@RestController
 public class ReviewController {
 	@Autowired
 	private IReviewService reviewService;
