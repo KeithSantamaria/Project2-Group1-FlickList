@@ -1,8 +1,6 @@
 import React from 'react'
 function TrendingCard(props) {
 
-    const logo = "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg";
-
     return (
         <div className=" group flex-shrink-0 flex flex-col justify-between 
                         bg-white w-48 h-80 rounded-xl
