@@ -11,7 +11,7 @@ function NavBar() {
 
     return (
         <nav>
-            <div className="m-3 px-20 bg-white border rounded-lg">
+            <div className="px-20 bg-white border">
                 <div className="flex justify-between">
                     <Logo>
                     </Logo>
