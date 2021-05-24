@@ -1,4 +1,4 @@
-import * as actions from './actions.js';
+import * as actions from '../actions.js';
 
 export function reviewAdded(id, userId, movieId, date, rating, title, textBody) {
     return {
