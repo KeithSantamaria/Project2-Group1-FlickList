@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 import * as actions from '../../redux/actions';
 
@@ -9,6 +10,7 @@ function LoginForm(props) {
   const [passwordInput, setPasswordInput] = useState("");
   const [resp, setResp] = useState(null);
 
+  const history = useHistory();
   const state = useSelector(state => state);
   const dispatch = useDispatch()
 
@@ -38,7 +40,10 @@ function LoginForm(props) {
           payload : resp
         }
       )
+      history.push("/");
     }
+
+
   }
 
   return (

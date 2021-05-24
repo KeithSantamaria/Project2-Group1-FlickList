@@ -44,6 +44,7 @@ const SignUpForm = (props) => {
           payload : resp
         }
       )
+      history.push("/");
     }
     else{
       alert("Enter a username and password!");
