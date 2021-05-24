@@ -1,4 +1,4 @@
-import * as actions from './actions.js';
+import * as actions from '../actions.js';
 
 export default function reviewReducer( state = [], action) {
     if (action.type === actions.REVIEW_ADDED) {
