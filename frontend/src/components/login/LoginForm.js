@@ -20,7 +20,6 @@ function LoginForm(props) {
     .catch( error => {
       console.log("Log in failed");
     })
-
   }
 
   return (
@@ -37,7 +36,7 @@ function LoginForm(props) {
         <input type = "password" value ={passwordInput} onChange = {(e) => {setPasswordInput(e.target.value)}}/>
       </div>
       <div className ="flex justify-center">
-        <button onClick = {() => {handleLogin()}}> Log In</button>
+        <button className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleLogin()}}> Log in</button>
       </div>
     </div>
   )
