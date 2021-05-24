@@ -1,4 +1,4 @@
-const REVIEW_ADDED = 'reviewAdded';
-const REVIEW_DELETED = 'reviewDeleted';
+export const REVIEW_ADDED = 'reviewAdded';
+export const REVIEW_DELETED = 'reviewDeleted';
 
-const CURRENT_USER_STORED = 'loggedIn';
+export const CURRENT_USER_STORED = 'loggingIn';

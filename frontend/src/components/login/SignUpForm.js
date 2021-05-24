@@ -1,15 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
-function SignUpForm() {
+import * as actions from '../../redux/actions';
+
+const SignUpForm = (props) => {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailNameInput, setEmailNameInput] = useState("");
 
+  const [resp, setResp] = useState(null);
+
+
   const history = useHistory();
+  const count = useSelector(state => state);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log(count);
+  }, [count])
 
   const handleSubmit = () => {
     const newUser = {
@@ -23,9 +35,15 @@ function SignUpForm() {
       axios.post("http://localhost:8080/users", newUser)
       .then( res => {
         if (res.status === 200){
-          console.log(res.data);
+          setResp(res.data);
         }
       })
+      dispatch(
+        {
+          type: actions.CURRENT_USER_STORED,
+          payload : resp
+        }
+      )
     }
     else{
       alert("Enter a username and password!");
@@ -65,11 +83,11 @@ function SignUpForm() {
           <span>Email :</span>
           <input type = "email" value = {emailNameInput} onChange = { (e) => {setEmailNameInput(e.target.value)}}/>
         </div>
-        <div className ="flex justify-center">
-          <button className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleSubmit()}}>Sign Up!</button>
-        </div>
-      </form>
 
+      </form>
+      <div className ="flex justify-center">
+        <button className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleSubmit()}}>Sign Up!</button>
+      </div>
     </div>
   )
 }
