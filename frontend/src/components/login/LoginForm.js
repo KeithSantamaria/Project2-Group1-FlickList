@@ -1,10 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux'
+
+import * as actions from '../../redux/actions';
 
 function LoginForm(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [respData, setRespData] = useState(null);
+  const [resp, setResp] = useState(null);
+
+  const state = useSelector(state => state);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log(state);
+  }, [state])
 
   const handleLogin = () => {
     const loginInfo = {
@@ -14,12 +24,21 @@ function LoginForm(props) {
     axios.post("http://localhost:8080/users/login", loginInfo)
     .then( res => {
       if (res.status === 200){
-        console.log(res.data);
+        setResp(res.data);
       }
     })
     .catch( error => {
       console.log("Log in failed");
     })
+
+    if(resp !== null){
+      dispatch(
+        {
+          type: actions.CURRENT_USER_STORED,
+          payload : resp
+        }
+      )
+    }
   }
 
   return (
