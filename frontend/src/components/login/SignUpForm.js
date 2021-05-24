@@ -16,12 +16,12 @@ const SignUpForm = (props) => {
 
 
   const history = useHistory();
-  const count = useSelector(state => state);
+  const state = useSelector(state => state);
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(count);
-  }, [count])
+    console.log(state);
+  }, [state])
 
   const handleSubmit = () => {
     const newUser = {
