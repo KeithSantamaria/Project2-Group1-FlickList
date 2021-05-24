@@ -12,8 +12,8 @@ function NavBar() {
     return (
         <nav>
             <div className="flex justify-center bg-white border">
-                <div className="flex flex-grow max-w-screen-lg justify-between px-20">
-                    <Logo>
+                <div className="flex flex-grow max-w-screen-lg justify-between px-20 text-xl">
+                    <Logo textSize="text-xl" iconHeight="h-8">
                     </Logo>
                     <NavProfile firstName={firstName} lastName={lastName} email={email} userId={userId}>
                     </NavProfile>
