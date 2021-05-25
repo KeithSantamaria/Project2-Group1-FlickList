@@ -63,12 +63,11 @@ function MovieInfo(props) {
                     </div>
                 </div>
                 <div className="flex flex-col font-openSans">
-                    <div className="flex gap-4 items-center">
+                    <div className="flex items-center">
                         <h1 className="px-2 text-2xl font-bold">Overview</h1>
-                        <div className=" flex-grow h-2 bg-gradient-to-r from-primary rounded-full"></div>
+                        <div className=" flex-grow h-2 bg-gradient-to-l from-primary rounded-full"></div>
                     </div>
                     <p className="p-7 text-lg leading-relaxed">{movie.overview}</p>
-                    <div className=" flex-grow h-2 bg-gradient-to-r from-primary rounded-full"></div>
                 </div>
             </div>
 
