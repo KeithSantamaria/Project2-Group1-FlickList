@@ -1,5 +1,6 @@
 import React from 'react'
-import {CollectionIcon} from '@heroicons/react/solid';
+import { CollectionIcon } from '@heroicons/react/solid';
+import { Link } from 'react-router-dom';
 
 
 // HOW TO USE
@@ -8,14 +9,14 @@ import {CollectionIcon} from '@heroicons/react/solid';
 
 function Logo(props) {
     return (
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
             <CollectionIcon className={`text-primary ${props.iconHeight}`}></CollectionIcon>
             <h1 className={`font-openSans font-extrabold
                 py-4 px-1
                 text-primary ${props.textSize}`}>
-                    Flick.
+                Flick.
             </h1>
-        </div>
+        </Link>
     )
 }
 
