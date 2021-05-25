@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping ("/reviews")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class ReviewController {
 	@Autowired
