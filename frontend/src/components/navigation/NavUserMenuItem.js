@@ -1,5 +1,6 @@
 import React from 'react'
 import { Menu } from '@headlessui/react';
+import { Link } from 'react-router-dom';
 
 const { Item } = Menu;
 
@@ -10,7 +11,7 @@ function NavUserMenuItem(props) {
     return (
         <Item>
             {({ active }) => (
-                <a href={url}>
+                <Link to={url}>
                     <button
                         className={`${active
                             ? 'bg-primary text-white'
@@ -19,7 +20,7 @@ function NavUserMenuItem(props) {
                     >
                         {name}
                     </button>
-                </a>
+                </Link>
             )}
         </Item>
     )

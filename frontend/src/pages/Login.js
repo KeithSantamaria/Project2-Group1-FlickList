@@ -12,7 +12,7 @@ function Login() {
     <div >
       <div className ="flex justify-center">
         <span>Welcome to</span>
-        <Logo textSize="text-x3" iconHeight="h-20"/>
+        <Logo textSize="text-x3" iconHeight="h-36"/>
       </div>
         <ToggleAuthMode setAuthMode = {setAuthMode}/>
         {
