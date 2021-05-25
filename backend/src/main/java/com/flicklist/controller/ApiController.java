@@ -1,5 +1,6 @@
 package com.flicklist.controller;
 
+import com.flicklist.service.tmdb.TmdbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -18,54 +19,24 @@ public class ApiController {
     private String tmdbKey;
 
     @Autowired
-    private WebClient webClient;
+    private TmdbService tmdbService;
 
 
     @GetMapping("/trending")
     public ResponseEntity<String> getTrending() {
 
-        try{
-            return webClient
-                    .get()
-                    .uri("/trending/movie/week?api_key="+tmdbKey)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .toEntity(String.class)
-                    .block();
-        }catch(WebClientRequestException exception){
-            return ResponseEntity.badRequest().build();
-        }
+        return tmdbService.getTrending();
 
     }
 
     @GetMapping("/movie/{id}")
     public ResponseEntity<String> getMovieById(@PathVariable String id){
-        try{
-            return webClient
-                    .get()
-                    .uri("/movie/" + id + "?api_key="+tmdbKey)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .toEntity(String.class)
-                    .block();
-        }catch(WebClientRequestException exception) {
-            return ResponseEntity.badRequest().build();
-        }
+        return tmdbService.getMovieById(id);
     }
 
     @GetMapping("/search/{movie}")
     public ResponseEntity<String> serachMovie(@PathVariable String movie){
-        try{
-            return webClient
-                    .get()
-                    .uri("/search/movie?api_key="+tmdbKey+"&query="+movie+"&page=1&include_adult=false")
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .toEntity(String.class)
-                    .block();
-        }catch(WebClientRequestException exception) {
-            return ResponseEntity.badRequest().build();
-        }
+        return tmdbService.searchByMovie(movie);
     }
 
 
