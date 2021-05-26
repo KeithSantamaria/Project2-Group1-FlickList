@@ -9,6 +9,7 @@ function LoginForm(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [resp, setResp] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const history = useHistory();
   const state = useSelector(state => state);
@@ -17,6 +18,19 @@ function LoginForm(props) {
   useEffect(() => {
     console.log(state);
   }, [state])
+
+  useEffect(() => {
+    console.log("running");
+    if(resp !== null){
+      dispatch(
+        {
+          type: actions.CURRENT_USER_STORED,
+          payload : resp
+        }
+      )
+      history.push("/");
+    }
+  }, [loggedIn])
 
   const handleLogin = () => {
     const loginInfo = {
@@ -27,23 +41,12 @@ function LoginForm(props) {
     .then( res => {
       if (res.status === 200){
         setResp(res.data);
+        setLoggedIn(true);
       }
     })
     .catch( error => {
       console.log("Log in failed");
     })
-
-    if(resp !== null){
-      dispatch(
-        {
-          type: actions.CURRENT_USER_STORED,
-          payload : resp
-        }
-      )
-      history.push("/");
-    }
-
-
   }
 
   return (
