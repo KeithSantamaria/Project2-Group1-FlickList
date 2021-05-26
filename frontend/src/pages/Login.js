@@ -11,7 +11,9 @@ function Login() {
   return (
     <div >
       <div className ="flex justify-center">
-        <span>Welcome to</span>
+        <h1>Welcome to FlickList</h1>
+      </div>
+      <div className ="flex justify-center">
         <LoginLogo textSize="text-x3" iconHeight="h-36"/>
       </div>
         <ToggleAuthMode setAuthMode = {setAuthMode}/>

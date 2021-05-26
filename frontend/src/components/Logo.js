@@ -1,5 +1,5 @@
 import React from 'react'
-import { CollectionIcon } from '@heroicons/react/solid';
+import { FilmIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 
 
@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 function Logo(props) {
     return (
         <Link to="/" className="flex items-center">
-            <CollectionIcon className={`text-primary ${props.iconHeight}`}></CollectionIcon>
+            <FilmIcon className={`text-primary ${props.iconHeight}`}></FilmIcon>
             <h1 className={`font-openSans font-extrabold
                 py-4 px-1
                 text-primary ${props.textSize}`}>
-                Flick.
+                FlickList
             </h1>
         </Link>
     )
