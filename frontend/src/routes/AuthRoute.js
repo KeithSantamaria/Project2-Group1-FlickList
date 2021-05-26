@@ -7,13 +7,6 @@ function AuthRoute(props) {
   const dispatch = useDispatch()
 
   const Child = props.childComponent;
-  useEffect(() => {
-    console.log(state);
-    console.log(state.currentUser);
-    if(state.currentUser === {}){
-      console.log("Should redirect");
-    }
-  },[state]);
 
   if(state.currentUser !== undefined){
     if (props.exact === true){
