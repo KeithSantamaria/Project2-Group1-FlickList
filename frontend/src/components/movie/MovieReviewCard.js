@@ -1,20 +1,22 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { StarIcon, ThumbUpIcon, ThumbDownIcon } from '@heroicons/react/solid';
 
 
 function MovieReviewCard(props) {
 
-    
-    const { review } = props
+
+    const { review, reviewIndex, addLike, addDislike } = props
+
+    const [hasLiked, setHasLiked] = useState(false);
 
 
     const user = "Keith Santamaria";
 
-    if (review ==null) {
+    if (review == null) {
 
-        return(
+        return (
             <div>
-                Review not found
+                Movie has no reviews.
             </div>
         )
 
@@ -35,10 +37,34 @@ function MovieReviewCard(props) {
                             <p className="text-xs px-2opacity-50">{review.date}</p>
                             <p className="text-xs px-2opacity-50">by "{user}"</p>
                         </div>
-                        <div className="flex h-7 gap-3 text-gray-400">
+                        <div className="flex h-7 gap-3 text-gray-500">
                             <p className=" self-center">{review.likes}</p>
-                            <ThumbUpIcon className="h-6 self-start hover:text-primary" />
-                            <ThumbDownIcon className="h-6 self-end hover:text-secondary" />
+                            <button className={`self-start focus:outline-none 
+                                ${hasLiked
+                                    ? "opacity-50 cursor-default"
+                                    : "hover:text-primary"
+                                }`}
+                                onClick={() => {
+                                    if (!hasLiked) {
+                                        addLike(reviewIndex);
+                                        setHasLiked(true);
+                                    }
+                                }}>
+                                <ThumbUpIcon className="h-6 " />
+                            </button>
+                            <button className={`self-end focus:outline-none  
+                                ${hasLiked
+                                    ? "opacity-50 cursor-default"
+                                    : "hover:text-secondary"
+                                }`}
+                                onClick={() => {
+                                    if (!hasLiked) {
+                                        addDislike(reviewIndex);
+                                        setHasLiked(true);
+                                    }
+                                }}>
+                                <ThumbDownIcon className="h-6 " />
+                            </button>
                         </div>
                     </div>
                 </div>
