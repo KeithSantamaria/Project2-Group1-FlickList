@@ -1,5 +1,6 @@
 import React from 'react'
 import Logo from '../Logo';
+import Divider from '../Divider';
 
 function MovieInfo(props) {
 
@@ -63,10 +64,7 @@ function MovieInfo(props) {
                     </div>
                 </div>
                 <div className="flex flex-col font-openSans">
-                    <div className="flex items-center">
-                        <h1 className="px-2 text-2xl font-bold">Overview</h1>
-                        <div className=" flex-grow h-2 bg-gradient-to-l from-primary rounded-full"></div>
-                    </div>
+                    <Divider title="Overview"/>
                     <p className="p-7 text-lg leading-relaxed">{movie.overview}</p>
                 </div>
             </div>
