@@ -24,8 +24,8 @@ function ProfileAccountDetails(props) {
   }, [props.userInfo])
 
   return (
-    <div className="flex justify-center">
-      <div>
+    <div className="profile flex justify-center">
+      <div className="content-wrapper">
         <table>
           <tbody>
             <AccountDetailRow title = "ID" entry = {props.userInfo.id} />

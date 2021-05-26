@@ -40,11 +40,13 @@ function TrendingMovies() {
                     ? "flex-wrap"
                     : "overflow-hidden"
                 }`}>
-                {trendingMovies.map((movie) => {
-                    return <TrendingCard key={movie.id} name={movie.title}
-                        movieId={movie.id}
-                        imgUrl={`${baseImageUrl}${movie.poster_path}`} />
-                })}
+                {
+                    trendingMovies.map((movie) => {
+                        return <TrendingCard key={movie.id} name={movie.title}
+                            movieId={movie.id}
+                            imgUrl={`${baseImageUrl}${movie.poster_path}`} />
+                    })
+                }
             </div>
         </div>
 

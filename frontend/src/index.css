@@ -4,6 +4,39 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+div.auth {
+    padding: 15px;
+}
+
+div.auth > span {
+    padding: 5px 15px;
+}
+
+button.auth {
+    margin: 20px;
+}
+
+button.auth:hover  {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1.profile {
+    padding: 20px;
+}
+
+.content-wrapper {
+    padding: 30px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 label.review {
     display: block;
