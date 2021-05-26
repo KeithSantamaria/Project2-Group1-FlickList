@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+
+import Divider from '../Divider';
 
 import MovieReviewCard from './MovieReviewCard';
 
@@ -17,12 +19,7 @@ function MovieReviews(props) {
 
     return (
         <div className="flex flex-col gap-6 font-openSans">
-            <div className="flex items-center">
-                <h1 className="px-2 text-2xl font-bold">Reviews</h1>
-                <div className=" flex-grow h-2 bg-gradient-to-l from-primary rounded-full"></div>
-            </div>
-
-
+            <Divider title="Reviews"/>
             <div className="flex flex-col gap-6">
                 {
                     reviews.length == 0
