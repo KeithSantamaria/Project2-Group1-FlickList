@@ -1,13 +1,12 @@
-import React,{useState} from 'react';
+import React from 'react';
 import Logo from '../Logo';
 import NavProfile from './NavProfile';
+import { useSelector} from 'react-redux';
+
 
 function NavBar() {
 
-    const [firstName,setFirstName] = useState("First");
-    const [lastName,setLastName] = useState("Name");
-    const [email,setEmail] = useState("email@email.com");
-    const [userId, setUserId] = useState("testId");
+    const user = useSelector(state=>state.currentUser);
 
     return (
         <nav>
@@ -15,7 +14,7 @@ function NavBar() {
                 <div className="flex flex-grow max-w-screen-lg justify-between px-20 text-xl">
                     <Logo textSize="text-xl" iconHeight="h-8">
                     </Logo>
-                    <NavProfile firstName={firstName} lastName={lastName} email={email} userId={userId}>
+                    <NavProfile firstName={user.firstName} lastName={user.lastName} email={user.email} userId={user.id}>
                     </NavProfile>
                 </div>
             </div>
