@@ -18,22 +18,33 @@ function MovieReviews(props) {
     }, []);
 
     const addLike = (index)=>{
-        console.log("adding like to " + index);
-
         let copyOfReviews = [...reviews];
         let currentReview = {...reviews[index]};
         currentReview.likes = currentReview.likes + 1;
         copyOfReviews[index] = currentReview;
         setReviews(copyOfReviews);
+        axios.put("http://localhost:8080/reviews",
+            {...copyOfReviews[index]})
+            .then((response)=>{
+                //console.log(response);
+            }).catch((error)=>{
+                console.log(error);
+            })
     };
 
     const addDislike = (index)=>{
-        console.log("adding dislike to " + index);
         let copyOfReviews = [...reviews];
         let currentReview = {...reviews[index]};
         currentReview.likes = currentReview.likes - 1;
         copyOfReviews[index] = currentReview;
         setReviews(copyOfReviews);
+        axios.put("http://localhost:8080/reviews",
+            {...copyOfReviews[index]})
+            .then((response)=>{
+                //console.log(response);
+            }).catch((error)=>{
+                console.log(error);
+            })
     };
 
     return (

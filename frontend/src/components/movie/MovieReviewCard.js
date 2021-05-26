@@ -7,7 +7,7 @@ function MovieReviewCard(props) {
 
     const { review, reviewIndex, addLike, addDislike } = props
 
-    const [hasLiked,setHasLiked] = useState(false);
+    const [hasLiked, setHasLiked] = useState(false);
 
 
     const user = "Keith Santamaria";
@@ -16,7 +16,7 @@ function MovieReviewCard(props) {
 
         return (
             <div>
-                Review not found
+                Movie has no reviews.
             </div>
         )
 
@@ -40,26 +40,28 @@ function MovieReviewCard(props) {
                         <div className="flex h-7 gap-3 text-gray-500">
                             <p className=" self-center">{review.likes}</p>
                             <button className={`self-start focus:outline-none 
-                                ${
-                                    hasLiked
+                                ${hasLiked
                                     ? "opacity-50 cursor-default"
                                     : "hover:text-primary"
                                 }`}
-                                onClick={()=>{
-                                    addLike(reviewIndex);
-                                    setHasLiked(true);
+                                onClick={() => {
+                                    if (!hasLiked) {
+                                        addLike(reviewIndex);
+                                        setHasLiked(true);
+                                    }
                                 }}>
                                 <ThumbUpIcon className="h-6 " />
                             </button>
                             <button className={`self-end focus:outline-none  
-                                ${
-                                    hasLiked
+                                ${hasLiked
                                     ? "opacity-50 cursor-default"
                                     : "hover:text-secondary"
                                 }`}
-                                onClick={()=>{
-                                    addDislike(reviewIndex);
-                                    setHasLiked(true);
+                                onClick={() => {
+                                    if (!hasLiked) {
+                                        addDislike(reviewIndex);
+                                        setHasLiked(true);
+                                    }
                                 }}>
                                 <ThumbDownIcon className="h-6 " />
                             </button>
