@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import Logo from '../components/Logo';
+import LoginLogo from '../components/login/LoginLogo';
 import LoginForm from '../components/login/LoginForm';
 import SignUpForm from '../components/login/SignUpForm';
 import ToggleAuthMode from '../components/login/ToggleAuthMode';
@@ -11,8 +11,10 @@ function Login() {
   return (
     <div >
       <div className ="flex justify-center">
-        <span>Welcome to</span>
-        <Logo textSize="text-x3" iconHeight="h-36"/>
+        <h1>Welcome to FlickList</h1>
+      </div>
+      <div className ="flex justify-center">
+        <LoginLogo textSize="text-x3" iconHeight="h-36"/>
       </div>
         <ToggleAuthMode setAuthMode = {setAuthMode}/>
         {
