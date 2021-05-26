@@ -58,11 +58,11 @@ const SignUpForm = (props) => {
       </div>
 
       <form >
-        <div className ="flex justify-center">
+        <div className ="auth flex justify-center">
           <h2>Required: </h2>
         </div>
 
-        <div className ="flex justify-center">
+        <div className ="auth flex justify-center">
           <span>Username : </span>
           <input required type = "text" value = {usernameInput} onChange = {(e) => {setUsernameInput(e.target.value)}}/>
 
@@ -70,11 +70,11 @@ const SignUpForm = (props) => {
           <input required type = "password" value ={passwordInput} onChange = {(e) => {setPasswordInput(e.target.value)}}/>
         </div>
 
-        <div className ="flex justify-center">
+        <div className ="auth flex justify-center">
           <h2> Optional: </h2>
         </div>
 
-        <div className ="flex justify-center">
+        <div className ="auth flex justify-center">
           <span>First Name : </span>
           <input type = "text" value = {firstNameInput} onChange = {(e) => {setFirstNameInput(e.target.value)}}/>
         
@@ -87,7 +87,7 @@ const SignUpForm = (props) => {
 
       </form>
       <div className ="flex justify-center">
-        <button className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleSubmit()}}>Sign Up!</button>
+        <button className = "auth bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleSubmit()}}>Sign Up!</button>
       </div>
     </div>
   )
