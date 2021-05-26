@@ -4,10 +4,11 @@ import { StarIcon } from '@heroicons/react/solid';
 function UserReviewCard(props) {
 
     const { review } = props;
+    const baseImgUrl = "https://image.tmdb.org/t/p/original";
 
     return (
-        <div className="flex h-32 bg-white items-center rounded-2xl shadow-lg p-10 gap-6">
-            <h1> Movie id: {review.movieId}</h1>
+        <div className="flex h-32 bg-white items-center rounded-2xl shadow-lg gap-6">
+            <img className=" h-32 rounded-xl" src={`${baseImgUrl}${review.moviePoster}`}/>
             <div className="flex flex-col flex-grow p-10 gap-6">
                 <div className="flex jus gap-2 justify-between">
                     <div className="flex">

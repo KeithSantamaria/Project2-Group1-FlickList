@@ -18,6 +18,8 @@ public class Review {
 	private String userId;
 	@NotEmpty
 	private String movieId;
+	private String moviePoster;
+	private String movieTitle;
 	private String date;
 	@Positive
 	@Min(value = 1, message = "Rating must be greater than 0")
