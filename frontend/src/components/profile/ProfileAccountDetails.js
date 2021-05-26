@@ -1,27 +1,26 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 import AccountDetailRow from './AccountDetailRow';
 
 function ProfileAccountDetails(props) {
   const [changedFirst,setFirstName] = useState(props.userInfo.firstName);
-  const [changedLast,setLastName] = useState("");
-  const [changedEmail,setEmail] = useState("");
+  const [changedLast,setLastName] = useState(props.userInfo.lastName);
+  const [changedEmail,setEmail] = useState(props.userInfo.email);
+
 
   const handleUpdateProfile = () => {
     const newProfile = {
-      userName : props.userInfo.userName,
+      id: props.userInfo.id,
+      username : props.userInfo.username,
       firstName : changedFirst,
       lastName: changedLast,
       email : changedEmail,
-      id: props.userInfo.id
+      password: props.userInfo.password
     }
-
+    console.log(newProfile);
     props.setUserInfo(newProfile)
+    props.setUpdate(true);
   }
-
-  useEffect(() => {
-    console.log(props.userInfo)
-  }, [props.userInfo])
 
   return (
     <div className="profile flex justify-center">
