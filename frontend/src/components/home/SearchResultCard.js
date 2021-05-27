@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import {PhotographIcon} from '@heroicons/react/solid';
-
 function SearchResultCard(props) {
 
     const baseImageUrl = "https://image.tmdb.org/t/p/original"
@@ -12,7 +9,8 @@ function SearchResultCard(props) {
             {
                 props.moviePoster != null
                     && <img src={baseImageUrl + props.moviePoster}
-                    className=" h-40 w-28 rounded-l-2xl object-fill" />
+                    className=" h-40 w-28 rounded-l-2xl object-fill"
+                    alt="Img not found"/>
         
             }
             

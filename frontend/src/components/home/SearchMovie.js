@@ -13,8 +13,10 @@ function SearchMovie() {
             axios.get(`http://localhost:8080/tmdb/search/${query}`)
                 .then((response) => {
                     setResults(response.data.results);
-                    console.log(response.data.results);
-                })
+                    //console.log(response.data.results);
+                }).catch((error)=>{
+                    console.log(error);
+                });
         }
     }, [query])
 
