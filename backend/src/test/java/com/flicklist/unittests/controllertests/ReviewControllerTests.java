@@ -39,6 +39,7 @@ public class ReviewControllerTests {
         review.setUserId("testId");
         review.setMovieId("movieId");
         review.setRating(5);
+        review.setReviewerName("test");
         objectMapper = new ObjectMapper();
     }
 
