@@ -23,7 +23,7 @@ function MovieReviews(props) {
             });
         
         
-    }, []);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const addLike = (index)=>{
         let copyOfReviews = [...reviews];
@@ -58,14 +58,14 @@ function MovieReviews(props) {
     useEffect(()=>{
         if(reviews.length > 0){
             for(let i = reviews.length -1; i > -1; i--){
-                if(reviews[i].userId == user.id){
+                if(reviews[i].userId === user.id){
                     setHasReviewed(true);
                     break;
                 }
             }
         }
     
-    },[reviews]);
+    },[reviews, user.id]);
     
     return (
         <div className="flex flex-col gap-6 font-openSans">
@@ -76,7 +76,7 @@ function MovieReviews(props) {
             }
             <div className="flex flex-col-reverse gap-6">
                 {
-                    reviews.length == 0
+                    reviews.length === 0
                         ? <div className="flex justify-center">
                             No Reviews found.
                         </div>

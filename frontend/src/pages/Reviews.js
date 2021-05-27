@@ -14,33 +14,23 @@ function Reviews() {
       .then((response) => {
         setReviews(response.data);
       })
-  }, []);
-
-  if (reviews.length == 0) {
-    return (
-      <div>
-        <NavBar />
-        <div className="flex justify-center my-10 font-openSans">
-          <div className="flex flex-col flex-grow max-w-screen-lg gap-6 px-20">
-            <div>
-              No Reviews have been made.
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
       <NavBar />
       <div className="flex justify-center my-10 font-openSans">
         <div className="flex flex-col flex-grow max-w-screen-lg gap-6 px-20">
-          {
-            reviews.map((review) => {
-              return <UserReviewCard key={review.id} review={review} />
-            })
-          }
+          <Divider title="My Reviews" />
+          <div className="flex flex-col-reverse gap-6">
+            {
+              reviews.length === 0
+                ? "No Reviews have been made"
+                : reviews.map((review,index) => {
+                  return <UserReviewCard key={index} review={review} currentReviewIndex={index} reviews={reviews} setReviews={setReviews} />
+                })
+            }
+          </div>
         </div>
       </div>
     </div>
