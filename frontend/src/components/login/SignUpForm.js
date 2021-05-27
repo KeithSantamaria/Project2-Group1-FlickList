@@ -12,6 +12,8 @@ const SignUpForm = (props) => {
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailNameInput, setEmailNameInput] = useState("");
 
+  const [signedUp, setSignedUp] = useState(false);
+
   const [resp, setResp] = useState(null);
 
 
@@ -22,6 +24,18 @@ const SignUpForm = (props) => {
   useEffect(() => {
     console.log(state);
   }, [state])
+
+  useEffect(() => {
+    if(resp !== null){
+      dispatch(
+        {
+          type: actions.CURRENT_USER_STORED,
+          payload : resp
+        }
+      )
+      history.push("/");
+    }
+  }, [signedUp])
 
   const handleSubmit = () => {
     const newUser = {
@@ -36,15 +50,9 @@ const SignUpForm = (props) => {
       .then( res => {
         if (res.status === 200){
           setResp(res.data);
+          setSignedUp(true)
         }
       })
-      dispatch(
-        {
-          type: actions.CURRENT_USER_STORED,
-          payload : resp
-        }
-      )
-      history.push("/");
     }
     else{
       alert("Enter a username and password!");
