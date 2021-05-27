@@ -28,6 +28,7 @@ public class UserController {
 		else{
 			log.info("user not found!");
 		}
+
 		return userFound == null
 				? ResponseEntity.notFound().build()
 				: ResponseEntity.ok(userFound);
