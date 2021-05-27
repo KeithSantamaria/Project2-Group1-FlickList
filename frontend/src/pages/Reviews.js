@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import NavBar from '../components/navigation/NavBar';
 import Divider from '../components/Divider'
@@ -6,19 +6,28 @@ import UserReviewCard from '../components/review/UserReviewCard';
 import axios from 'axios';
 
 function Reviews() {
-  const {userId} = useParams();
-  const [reviews,setReviews] = useState([]);
+  const { userId } = useParams();
+  const [reviews, setReviews] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(`http://localhost:8080/reviews/user/${userId}`)
       .then((response) => {
         setReviews(response.data);
       })
-  },[]);
+  }, []);
 
-  if(reviews.length == 0){
+  if (reviews.length == 0) {
     return (
-      <h1>No reviews found.</h1>
+      <div>
+        <NavBar />
+        <div className="flex justify-center my-10 font-openSans">
+          <div className="flex flex-col flex-grow max-w-screen-lg gap-6 px-20">
+            <div>
+              No Reviews have been made.
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 
@@ -27,10 +36,9 @@ function Reviews() {
       <NavBar />
       <div className="flex justify-center my-10 font-openSans">
         <div className="flex flex-col flex-grow max-w-screen-lg gap-6 px-20">
-          <Divider title="My Reviews"/>
           {
-            reviews.map((review)=>{
-              return <UserReviewCard key={review.id} review={review}/>
+            reviews.map((review) => {
+              return <UserReviewCard key={review.id} review={review} />
             })
           }
         </div>

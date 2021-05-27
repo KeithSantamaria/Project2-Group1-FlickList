@@ -2,19 +2,27 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 import Divider from '../Divider';
-
+import CreateReview from './CreateReview';
+import { useSelector } from 'react-redux';
 import MovieReviewCard from './MovieReviewCard';
 
 function MovieReviews(props) {
 
     const [reviews, setReviews] = useState([]);
-    const { movieId } = props;
+    const [hasReviewed,setHasReviewed] = useState(false);
+    const { movieId,movieTitle,moviePoster } = props;
+    const user = useSelector(state=>state.currentUser);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/reviews/movie/${movieId}`)
             .then((response) => {
                 setReviews(response.data);
             })
+            .catch((error)=>{
+                console.log(error);
+            });
+        
+        
     }, []);
 
     const addLike = (index)=>{
@@ -47,17 +55,33 @@ function MovieReviews(props) {
             })
     };
 
+    useEffect(()=>{
+        if(reviews.length > 0){
+            for(let i = reviews.length -1; i > -1; i--){
+                if(reviews[i].userId == user.id){
+                    setHasReviewed(true);
+                    break;
+                }
+            }
+        }
+    
+    },[reviews]);
+    
     return (
         <div className="flex flex-col gap-6 font-openSans">
             <Divider title="Reviews"/>
-            <div className="flex flex-col gap-6">
+            {
+                !hasReviewed &&
+                    <CreateReview movieId={movieId} setReviews={setReviews} reviews={reviews} movieTitle={movieTitle} moviePoster={moviePoster} userId={user.id}/>
+            }
+            <div className="flex flex-col-reverse gap-6">
                 {
                     reviews.length == 0
                         ? <div className="flex justify-center">
                             No Reviews found.
                         </div>
                         : reviews.map((review, index) => {
-                            return <MovieReviewCard key={review.id} review={review} reviewIndex={index} addLike={addLike} addDislike={addDislike}/>
+                            return <MovieReviewCard key={index} review={review} reviewIndex={index} addLike={addLike} addDislike={addDislike}/>
                         })
                 }
             </div>
