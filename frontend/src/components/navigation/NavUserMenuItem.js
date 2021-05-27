@@ -1,14 +1,13 @@
 import React from 'react'
 import { Menu } from '@headlessui/react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
 
 const { Item } = Menu;
 
 function NavUserMenuItem(props) {
 
-    const state = useSelector(state => state);
     const dispatch = useDispatch()
 
     const { url, name } = props;

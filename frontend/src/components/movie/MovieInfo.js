@@ -23,7 +23,7 @@ function MovieInfo(props) {
     function getGenres(genres) {
         let finalGenres = "";
         for (let i = 0; i < genres.length; i++) {
-            if (i > 1 || i == genres.length - 1) {
+            if (i > 1 || i === genres.length - 1) {
                 finalGenres = finalGenres.concat(genres[i].name);
                 break;
             } else {
@@ -44,16 +44,20 @@ function MovieInfo(props) {
         return (
 
             <div className="flex flex-col gap-6">
-                <img className="h-72 rounded-2xl object-cover object-top shadow-xl" src={baseImgUrl + movie.backdrop_path} />
+                <img className="h-72 rounded-2xl object-cover object-top shadow-xl" 
+                    src={baseImgUrl + movie.backdrop_path} 
+                    alt="Not Found"/>
                 <div className="flex flex-wrap gap-6 justify-center">
-                    <img className=" h-80 rounded-xl shadow-xl" src={baseImgUrl + movie.poster_path} />
+                    <img className=" h-80 rounded-xl shadow-xl" src={baseImgUrl + movie.poster_path} 
+                        alt="Not Found"/>
                     <div className="flex p-5 flex-grow flex-col gap-4 justify-center items-center
                                         bg-white shadow-xl rounded-xl font-openSans">
                         <h1 className=" text-3xl font-bold opacity-75">{movie.title}</h1>
                         <h6 className="opacity-75">{getMovieYear(movie.release_date)}, {getGenres(movie.genres)}, {getMovieDuration(movie.runtime)}</h6>
                         <div className="flex w-full justify-around mt-5 whitespace-nowrap text-xl font-bold ">
                             <div className="flex items-center gap-6">
-                                <img className=" h-12" src={tmdbLogoUrl} />
+                                <img className=" h-12" src={tmdbLogoUrl} 
+                                    alt="Not Found" />
                                 <h1 className="text-3xl opacity-75">{movie.vote_average}<span className="opacity-50 text-xs">/10</span></h1>
                             </div>
                             <div className="flex items-center gap-4">

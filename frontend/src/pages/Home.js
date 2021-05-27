@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TrendingMovies from '../components/home/TrendingMovies';
 import NavBar from '../components/navigation/NavBar';
-import { useSelector, useDispatch } from 'react-redux';
 import SearchMovie from '../components/home/SearchMovie';
 
 function Home() {
-  const dispatch = useDispatch()
 
   return (
     <div>

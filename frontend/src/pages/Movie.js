@@ -14,7 +14,7 @@ function Movie() {
       .then((response)=>{
         setMovie(response.data);
       })
-  },[])
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

@@ -7,7 +7,7 @@ import RatingStarSelector from './RatingStarSelector.js';
 
 export default function CreateReview(props) {
 
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const [title, setTitle] = useState(null);
     const [textBody, setTextBody] = useState(null);
     const { movieId, movieTitle, moviePoster, reviews, setReviews, userId } = props;
