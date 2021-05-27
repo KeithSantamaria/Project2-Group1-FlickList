@@ -22,7 +22,7 @@ function Movie() {
       <div className="flex justify-center my-10">
         <div className="flex flex-col flex-grow max-w-screen-lg gap-6 px-20">
           <MovieInfo movie={movie}/>
-          <MovieReviews movieId={movieId}/>
+          <MovieReviews movieId={movieId} movieTitle={movie.title} moviePoster={movie.poster_path}/>
         </div>
       </div>
     </div>
