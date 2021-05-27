@@ -13,7 +13,7 @@ function Divider(props) {
     }
     return (
         <div className="flex items-center">
-            <h1 className="px-2 text-2xl font-bold">{title}</h1>
+            <h1 className="text-xl font-bold tracking-wide opacity-75 ">{title}</h1>
             <div className=" flex-grow h-2 bg-gradient-to-l from-primary rounded-full"></div>
         </div>
     )

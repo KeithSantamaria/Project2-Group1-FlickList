@@ -8,18 +8,22 @@ function SearchResultCard(props) {
 
             {
                 props.moviePoster != null
-                    && <img src={baseImageUrl + props.moviePoster}
+                && <img src={baseImageUrl + props.moviePoster}
                     className=" h-40 w-28 rounded-l-2xl object-fill"
-                    alt="Img not found"/>
-        
+                    alt="Img not found" />
+
             }
-            
-            <div className="flex flex-col h-40 p-8 gap-3 font-openSans">
-                <Link to={`/movie/${props.movieId}`}
-                    className="text-2xl hover:text-primary">
-                    {props.movieTitle}
-                </Link>
-                <p className="overflow-ellipsis overflow-hidden">{props.movieSummary}</p>
+
+            <div className="flex flex-col h-40 p-3 gap-1">
+                <div className="flex items-center gap-3"> 
+                    <Link to={`/movie/${props.movieId}`}
+                        className=" flex items-center gap-3 text-xl font-extrabold hover:text-primary">
+                        {props.movieTitle}
+                    </Link>
+                    <h6 className=" text-base font-bold opacity-60">{`(${props.movieYear})`}</h6>
+                </div>
+
+                <p className="overflow-ellipsis overflow-hidden text-sm">{props.movieSummary}</p>
             </div>
 
         </div>

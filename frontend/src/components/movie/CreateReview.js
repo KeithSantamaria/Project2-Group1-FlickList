@@ -25,17 +25,17 @@ export default function CreateReview(props) {
             textBody
         };
 
-        setReviews([
-            ...reviews,
-            currentReview
-        ]);
+        
 
         axios.post("http://localhost:8080/reviews",
             {
                 ...currentReview
             })
             .then((response) => {
-                reviewAdded(response);
+                setReviews([
+                    ...reviews,
+                    response.data
+                ]);
             })
             .catch((error) => {
                 console.log(error);
