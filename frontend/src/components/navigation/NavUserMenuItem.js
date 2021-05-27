@@ -33,7 +33,7 @@ function NavUserMenuItem(props) {
                         className={`${active
                             ? 'bg-primary text-white'
                             : 'text-gray-90'
-                            } whitespace-nowrap px-4 py-2 w-40 rounded-lg focus:outline-none`}
+                            } whitespace-nowrap px-4 py-2 w-40 focus:outline-none`}
                     >
                         {name}
                     </button>

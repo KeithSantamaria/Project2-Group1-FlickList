@@ -22,7 +22,7 @@ function NavUserMenu(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute flex flex-col rounded-lg bg-white shadow-2xl border">
+                    <Menu.Items className="absolute flex flex-col  bg-white shadow-xl border">
                         <NavUserMenuItem url={`/profile/${props.userId}`} name="Profile"></NavUserMenuItem>
                         <NavUserMenuItem url={`/reviews/${props.userId}`} name="My Reviews"></NavUserMenuItem>
                         <NavUserMenuItem url="/logout" name="Log Out"></NavUserMenuItem>
