@@ -7,6 +7,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
 
+/**\
+ * @ClassName User
+ *
+ * @Purpose The following class is a POJO that is used to store the users as documents in our mongoDb
+ *
+ * @Params
+ * 				String id: Unique id used for MongoDb
+ * 				String username: the username of the user, the more "casual" reference. Also unique
+ * 				String password: used to authenticate the user. They must input password to log in as user
+ * 				String firstName: optional detail that lists that first name of user.
+ * 				String lastName: optional detail that lists the last name
+ * 				String email: optional detail that lists the email.
+ */
+
 @Data
 @Document(collection = "users")
 public class User {

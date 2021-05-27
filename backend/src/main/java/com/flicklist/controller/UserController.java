@@ -22,7 +22,12 @@ public class UserController {
 	public ResponseEntity<User> login(@RequestBody User request) {
 		User userFound = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
 		log.info("login attempted");
-		log.info("user found: " + userFound.getUsername());
+		if(userFound != null){
+			log.info("user found: " + userFound);
+		}
+		else{
+			log.info("user not found!");
+		}
 		return userFound == null
 				? ResponseEntity.notFound().build()
 				: ResponseEntity.ok(userFound);
@@ -72,5 +77,7 @@ public class UserController {
 				: ResponseEntity.ok("\"deletedCount\":\"" + deleteCount + "\"");
 	}
 }
+
+
 //@RequestParam does it like this http://localhost:8080/delete?id=60a46bd2bad8d9537d0367b7
 //@RequestBody does it as JSON

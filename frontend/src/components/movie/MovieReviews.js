@@ -72,7 +72,7 @@ function MovieReviews(props) {
             <Divider title="Reviews"/>
             {
                 !hasReviewed &&
-                    <CreateReview movieId={movieId} setReviews={setReviews} reviews={reviews} movieTitle={movieTitle} moviePoster={moviePoster} userId={user.id}/>
+                    <CreateReview movieId={movieId} setReviews={setReviews} reviews={reviews} movieTitle={movieTitle} moviePoster={moviePoster} userId={user.id} reviewerName = {`${user.firstName} ${user.lastName}`}/>
             }
             <div className="flex flex-col-reverse gap-6">
                 {

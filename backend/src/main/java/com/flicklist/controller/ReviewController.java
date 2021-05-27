@@ -63,7 +63,6 @@ public class ReviewController {
 
 	@DeleteMapping()
 	public ResponseEntity<String> delete(@RequestBody Review request){
-		//TODO do something to confirm delete
 		long deleteCount = reviewService.delete(request);
 		log.info("attempting to delete review");
 		log.info("reviews deleted: " + deleteCount);
