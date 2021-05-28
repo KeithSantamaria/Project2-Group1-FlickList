@@ -8,22 +8,9 @@ import MovieReviewCard from './MovieReviewCard';
 
 function MovieReviews(props) {
 
-    const [reviews, setReviews] = useState([]);
     const [hasReviewed,setHasReviewed] = useState(false);
-    const { movieId,movieTitle,moviePoster } = props;
+    const { movie,reviews ,setReviews} = props;
     const user = useSelector(state=>state.currentUser);
-
-    useEffect(() => {
-        axios.get(`http://localhost:8080/reviews/movie/${movieId}`)
-            .then((response) => {
-                setReviews(response.data);
-            })
-            .catch((error)=>{
-                console.log(error);
-            });
-        
-        
-    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const addLike = (index)=>{
         let copyOfReviews = [...reviews];
@@ -72,7 +59,7 @@ function MovieReviews(props) {
             <Divider title="Reviews"/>
             {
                 !hasReviewed &&
-                    <CreateReview movieId={movieId} setReviews={setReviews} reviews={reviews} movieTitle={movieTitle} moviePoster={moviePoster} userId={user.id} reviewerName = {`${user.firstName} ${user.lastName}`}/>
+                    <CreateReview movieId={movie.id} setReviews={setReviews} reviews={reviews} movieTitle={movie.title} moviePoster={movie.poster_path} userId={user.id} reviewerName = {`${user.firstName} ${user.lastName}`}/>
             }
             <div className="flex flex-col-reverse gap-6">
                 {

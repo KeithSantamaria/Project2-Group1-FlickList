@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserCircleIcon } from '@heroicons/react/outline';
+import { UserCircleIcon,PencilAltIcon,LogoutIcon,AnnotationIcon} from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { Menu, Transition } from '@headlessui/react';
 import NavUserMenuItem from './NavUserMenuItem';
@@ -22,10 +22,10 @@ function NavUserMenu(props) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute flex flex-col rounded-lg bg-white shadow-2xl border">
-                        <NavUserMenuItem url={`/profile/${props.userId}`} name="Profile"></NavUserMenuItem>
-                        <NavUserMenuItem url={`/reviews/${props.userId}`} name="My Reviews"></NavUserMenuItem>
-                        <NavUserMenuItem url="/logout" name="Log Out"></NavUserMenuItem>
+                    <Menu.Items className="absolute mt-4 flex flex-col rounded-md bg-white p-2 shadow-md">
+                        <NavUserMenuItem url={`/profile/${props.userId}`} name="Profile" icon={<PencilAltIcon className="h-5"/>}></NavUserMenuItem>
+                        <NavUserMenuItem url={`/reviews/${props.userId}`} name="My Reviews" icon={<AnnotationIcon className="h-5"/>}></NavUserMenuItem>
+                        <NavUserMenuItem url="/logout" name="Log Out" icon={<LogoutIcon className="h-5"/>}></NavUserMenuItem>
                     </Menu.Items>
                 </Transition>
             </Menu>
