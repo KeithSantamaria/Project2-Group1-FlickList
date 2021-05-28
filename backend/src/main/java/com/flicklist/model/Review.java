@@ -18,6 +18,7 @@ import javax.validation.constraints.Positive;
  *
  * 				String id: Unique id used for MongoDb
  * 				String userId: references the unique Id of a user to show that the user created said review
+ * 				String reviewerName: tied with userId. It is used to correctly show the user's name the reivew card client side
  * 				String movieId: references the unique movie id from the tmdb api
  * 				String moviePoster: contains info used for rendering the movie Poster	from the tmdb api
  * 				String date: the timestamp used when the review is created
