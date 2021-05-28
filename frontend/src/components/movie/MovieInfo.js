@@ -30,7 +30,6 @@ function MovieInfo(props) {
         if(isNaN(average)){
             return "-";
         }
-        console.log("calculating average");
         return average.toFixed(1);
     }
 
