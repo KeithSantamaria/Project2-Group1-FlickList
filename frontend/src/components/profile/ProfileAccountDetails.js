@@ -23,8 +23,7 @@ function ProfileAccountDetails(props) {
   }
 
   return (
-    <div className="profile flex justify-center">
-      <div className="content-wrapper">
+    <div className="flex flex-col justify-center gap-6 bg-white p-10 rounded-xl shadow-md">
         <table>
           <tbody>
             <AccountDetailRow title = "ID" entry = {props.userInfo.id} />
@@ -34,8 +33,7 @@ function ProfileAccountDetails(props) {
             <AccountDetailRow title = "Email" entry = {changedEmail} isEditable = {true} setEntry = {setEmail}/>
           </tbody>
         </table>
-        <button onClick = {() => {handleUpdateProfile()}}>Confirm Changes</button>
-      </div>
+        <button className="bg-primary text-white w-40 self-center rounded-full p-2 hover:shadow-lg" onClick = {() => {handleUpdateProfile()}}>Confirm Changes</button>
     </div>
   )
 }
