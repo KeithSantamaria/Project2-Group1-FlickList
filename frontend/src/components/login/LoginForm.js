@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
+import { UserIcon, KeyIcon } from '@heroicons/react/outline';
 import * as actions from '../../redux/actions';
 
 function LoginForm(props) {
@@ -21,11 +21,11 @@ function LoginForm(props) {
 
   useEffect(() => {
     console.log("running");
-    if(resp !== null){
+    if (resp !== null) {
       dispatch(
         {
           type: actions.CURRENT_USER_STORED,
-          payload : resp
+          payload: resp
         }
       )
       history.push("/");
@@ -34,37 +34,33 @@ function LoginForm(props) {
 
   const handleLogin = () => {
     const loginInfo = {
-      username : usernameInput,
-      password : passwordInput
+      username: usernameInput,
+      password: passwordInput
     };
     axios.post("http://localhost:8080/users/login", loginInfo)
-    .then( res => {
-      if (res.status === 200){
-        setResp(res.data);
-        setLoggedIn(true);
-      }
-    })
-    .catch( error => {
-      console.log("Log in failed");
-    })
+      .then(res => {
+        if (res.status === 200) {
+          setResp(res.data);
+          setLoggedIn(true);
+        }
+      })
+      .catch(error => {
+        console.log("Log in failed");
+      })
   }
 
   return (
-    <div >
-      <div className ="auth  flex justify-center">
-        <h1>Log in Here!</h1>
+    <div className="flex flex-col items-center gap-4 p-10">
+      <h1 className="font-bold text-xl">Log in Here!</h1>
+      <div className="flex items-center gap-2 rounded-md p-2 shadow-inner border-l-4 border-primary">
+        <UserIcon className="h-5" />
+        <input className="p-1 focus:outline-none" type="text" value={usernameInput} onChange={(e) => { setUsernameInput(e.target.value) }} />
       </div>
-      <div className ="auth  flex justify-center">
-        <span>Username : </span>
-        <input type = "text" value = {usernameInput} onChange = {(e) => {setUsernameInput(e.target.value)}}/>
+      <div className="flex items-center gap-2 rounded-md p-2 shadow-inner border-l-4 border-primary">
+        <KeyIcon className="h-5" />
+        <input className="p-1 focus:outline-none" type="password" value={passwordInput} onChange={(e) => { setPasswordInput(e.target.value) }} />
       </div>
-      <div className ="auth  flex justify-center">
-        <span>Password : </span>
-        <input type = "password" value ={passwordInput} onChange = {(e) => {setPasswordInput(e.target.value)}}/>
-      </div>
-      <div className ="auth  flex justify-center">
-        <button className = "auth bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick = {() => {handleLogin()}}> Log in</button>
-      </div>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { handleLogin() }}> Log in</button>
     </div>
   )
 }

@@ -18,7 +18,8 @@ function SearchBar(props) {
     return (
         <div className=" flex flex-col justify-center
                     p-20 gap-6
-                    h-64 rounded-xl shadow-xl
+                    h-64 rounded-xl
+                    bg-gradient-to-b from-white
                 ">
             <h1 className="font-openSans text-6xl text-primary">Welcome.</h1>
             <div className="flex rounded-full justify-between bg-white">
