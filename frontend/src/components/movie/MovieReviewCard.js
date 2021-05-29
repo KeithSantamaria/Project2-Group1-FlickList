@@ -10,8 +10,6 @@ function MovieReviewCard(props) {
     const [hasLiked, setHasLiked] = useState(false);
 
 
-    const user = "Keith Santamaria";
-
     if (review == null) {
 
         return (
@@ -35,7 +33,7 @@ function MovieReviewCard(props) {
                     <div className="flex justify-between">
                         <div className="flex gap-4">
                             <p className="text-xs px-2opacity-50">{review.date}</p>
-                            <p className="text-xs px-2opacity-50">by "{user}"</p>
+                            <p className="text-xs px-2opacity-50">by "{review.reviewerName}"</p>
                         </div>
                         <div className="flex h-7 gap-3 text-gray-500">
                             <p className=" self-center">{review.likes}</p>

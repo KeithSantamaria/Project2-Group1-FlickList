@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import SearchResultCard from './SearchResultCard';
+import Divider from '../Divider';
 
 function SearchMovie() {
 
@@ -21,16 +22,18 @@ function SearchMovie() {
     }, [query])
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 font-openSans">
             <SearchBar query={query} setQuery={setQuery} />
             {query != null &&
                 <div className="flex flex-col gap-4">
+                    <Divider title="Results"/>
                     {results.map((movie) => {
                         return <SearchResultCard key={movie.id}
                             movieTitle={movie.title}
                             moviePoster={movie.poster_path}
                             movieSummary={movie.overview}
-                            movieId={movie.id} />
+                            movieId={movie.id}
+                            movieYear={movie.release_date.split("-")[0]} />
                     })}
                 </div>
             }

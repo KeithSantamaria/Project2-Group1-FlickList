@@ -10,13 +10,14 @@ export default function CreateReview(props) {
     const [rating, setRating] = useState(1);
     const [title, setTitle] = useState(null);
     const [textBody, setTextBody] = useState(null);
-    const { movieId, movieTitle, moviePoster, reviews, setReviews, userId } = props;
+    const { movieId, movieTitle, moviePoster, reviews, setReviews, userId, reviewerName } = props;
     
 
     const saveReview = () => {
         const currentReview = {
             userId,
             movieId,
+            reviewerName,
             movieTitle,
             moviePoster,
             rating,
@@ -24,17 +25,17 @@ export default function CreateReview(props) {
             textBody
         };
 
-        setReviews([
-            ...reviews,
-            currentReview
-        ]);
+        
 
         axios.post("http://localhost:8080/reviews",
             {
                 ...currentReview
             })
             .then((response) => {
-                reviewAdded(response);
+                setReviews([
+                    ...reviews,
+                    response.data
+                ]);
             })
             .catch((error) => {
                 console.log(error);

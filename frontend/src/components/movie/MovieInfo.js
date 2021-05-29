@@ -5,22 +5,35 @@ import Divider from '../Divider';
 function MovieInfo(props) {
 
 
-    const { movie } = props;
+    const { movie, reviews } = props;
 
     const baseImgUrl = "https://image.tmdb.org/t/p/original";
     const tmdbLogoUrl = "https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg";
 
-    function getMovieDuration(timeLenght) {
+    const getMovieDuration = (timeLenght)=> {
         const hours = Math.floor(timeLenght / 60);
         const minutes = timeLenght % 60;
         return hours + "h " + minutes + "m";
     }
 
-    function getMovieYear(releaseDate) {
+    const movieYear =(releaseDate)=> {
         return releaseDate.split("-")[0];
     }
 
-    function getGenres(genres) {
+    const calculateRating = (currentReviews) =>{
+        let average = 0;
+        for(let i =0; i< currentReviews.length; i++){
+            average = average + currentReviews[i].rating;
+        }
+
+        average = average / currentReviews.length;
+        if(isNaN(average)){
+            return "-";
+        }
+        return average.toFixed(1);
+    }
+
+    const getGenres = (genres)=>{
         let finalGenres = "";
         for (let i = 0; i < genres.length; i++) {
             if (i > 1 || i === genres.length - 1) {
@@ -53,7 +66,7 @@ function MovieInfo(props) {
                     <div className="flex p-5 flex-grow flex-col gap-4 justify-center items-center
                                         bg-white shadow-xl rounded-xl font-openSans">
                         <h1 className=" text-3xl font-bold opacity-75">{movie.title}</h1>
-                        <h6 className="opacity-75">{getMovieYear(movie.release_date)}, {getGenres(movie.genres)}, {getMovieDuration(movie.runtime)}</h6>
+                        <h6 className="opacity-75">{movieYear(movie.release_date)}, {getGenres(movie.genres)}, {getMovieDuration(movie.runtime)}</h6>
                         <div className="flex w-full justify-around mt-5 whitespace-nowrap text-xl font-bold ">
                             <div className="flex items-center gap-6">
                                 <img className=" h-12" src={tmdbLogoUrl} 
@@ -62,7 +75,7 @@ function MovieInfo(props) {
                             </div>
                             <div className="flex items-center gap-4">
                                 <Logo iconHeight="h-16" />
-                                <h1 className="text-3xl opacity-75">{(movie.vote_average / 2).toFixed(1)}<span className="opacity-50 text-xs">/5</span></h1>
+                                <h1 className="text-3xl opacity-75">{calculateRating(reviews)}<span className="opacity-50 text-xs">/5</span></h1>
                             </div>
                         </div>
                     </div>
